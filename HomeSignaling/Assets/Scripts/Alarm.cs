@@ -5,7 +5,7 @@ using UnityEngine;
 public class Alarm : MonoBehaviour
 {   
     private AudioSource _audioSource;
-    private Coroutine _ñhangeVolume;
+    private Coroutine _changeVolume;
 
     private float _speedChangesVolume = 0.1f;
 
@@ -18,12 +18,12 @@ public class Alarm : MonoBehaviour
     {
         _audioSource.Play();
 
-        if (_ñhangeVolume != null)
+        if (_changeVolume != null)
         {
-            StopCoroutine(_ñhangeVolume);
+            StopCoroutine(_changeVolume);
         }
 
-        _ñhangeVolume = StartCoroutine(ChangeVolume(volumeValue));
+        _changeVolume = StartCoroutine(ChangeVolume(volumeValue));
     }
 
     private IEnumerator ChangeVolume(float volumeValue)
