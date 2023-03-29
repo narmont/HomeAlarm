@@ -34,8 +34,6 @@ public class Alarm : MonoBehaviour
         {
             _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, volumeValue, _speedChangesVolume);
 
-            Debug.Log(_audioSource.volume);
-
             yield return wait;
         }
         
