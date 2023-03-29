@@ -28,13 +28,15 @@ public class Alarm : MonoBehaviour
 
     private IEnumerator ChangeVolume(float volumeValue)
     {
-        var wait = new WaitForSeconds(1f);
+        float oneSecond = 1f;
+
+        WaitForSeconds waitForOneSecond = new WaitForSeconds(oneSecond);
 
         while (_audioSource.volume != volumeValue)
         {
             _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, volumeValue, _speedChangesVolume);
 
-            yield return wait;
+            yield return waitForOneSecond;
         }
         
         if(_audioSource.volume <= 0)
