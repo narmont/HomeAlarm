@@ -28,9 +28,9 @@ public class Alarm : MonoBehaviour
 
     private IEnumerator ChangeVolume(float volumeValue)
     {
-        float oneSecond = 1f;
+        float delay = 1f;
 
-        WaitForSeconds waitForOneSecond = new WaitForSeconds(oneSecond);
+        WaitForSeconds waitForOneSecond = new WaitForSeconds(delay);
 
         while (_audioSource.volume != volumeValue)
         {
