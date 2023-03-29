@@ -1,13 +1,13 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Alarm : MonoBehaviour
 {   
     private AudioSource _audioSource;
+    private Coroutine _ÒhangeVolume;
 
-    private float _volume;
-    private float _endVolume;
-    private float _speed—hangesVolume = 0.1f;
+    private float _speedChangesVolume = 0.1f;
 
     private void Start()
     {
@@ -18,25 +18,21 @@ public class Alarm : MonoBehaviour
     {
         _audioSource.Play();
 
-        _endVolume = volumeValue;
-
-        if (_volume == _audioSource.volume)
+        if (_ÒhangeVolume != null)
         {
-            StopCoroutine(ChangeVolume());
+            StopCoroutine(_ÒhangeVolume);
         }
 
-        StartCoroutine(ChangeVolume());
+        _ÒhangeVolume = StartCoroutine(ChangeVolume(volumeValue));
     }
 
-    private IEnumerator ChangeVolume()
+    private IEnumerator ChangeVolume(float volumeValue)
     {
         var wait = new WaitForSeconds(1f);
 
-        while (_audioSource.volume != _endVolume)
+        while (_audioSource.volume != volumeValue)
         {
-            _volume = Mathf.MoveTowards(_audioSource.volume, _endVolume, _speed—hangesVolume);
-
-            _audioSource.volume = _volume;
+            _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, volumeValue, _speedChangesVolume);
 
             Debug.Log(_audioSource.volume);
 
